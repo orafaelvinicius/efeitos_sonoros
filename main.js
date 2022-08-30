@@ -1,16 +1,32 @@
-// Funcao para reproduzir som
-function tocaSomPom () {
+// Funcao para reproduzir sons
+function tocaSom (idElementoAudio) {
     
-    document.querySelector('#som_tecla_pom').play();
-    return 'tocou pom'
+    document.querySelector(idElementoAudio).play();
+    return 'tocou som'
 }
 
 // Criando lista de itens a partir da classe do elemento button
 const listaDeTeclas = document.querySelectorAll('.tecla');
 
-// Acessando todos os elementos da lista
-listaDeTeclas[0].onclick = tocaSomPom;
+// Contador de repeticoes
+let contador = 0;
 
+// Estrutura de repeticoes while
+while (contador < listaDeTeclas.length) {
 
+    const tecla = listaDeTeclas[contador]
+    
+    // capurando texto dinamico da tag button
+    const instrumento = tecla.classList[1];
+    
+    // template string
+    const idAudio = `#som_${instrumento}`;
 
+    tecla.onclick = function () {
+        tocaSom(idAudio);
+    }
+
+    contador += 1 
+
+}
 
